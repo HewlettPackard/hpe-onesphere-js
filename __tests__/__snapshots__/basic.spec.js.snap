@@ -1,0 +1,306 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic Catalog 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+  "serviceTypeUri",
+  "catalogTypeUri",
+  "zoneUri",
+  "url",
+  "status",
+  "state",
+  "protected",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic Catalog Types 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+  "protected",
+]
+`;
+
+exports[`basic Deployment 1`] = `
+Array [
+  "id",
+  "name",
+  "zoneUri",
+  "regionUri",
+  "serviceUri",
+  "serviceTypeUri",
+  "virtualMachineProfileUri",
+  "status",
+  "memorySizeGB",
+  "cpuCount",
+  "cpuGhz",
+  "diskSizeGB",
+  "uri",
+  "projectUri",
+  "hasConsole",
+  "errorMessage",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic Metric 1`] = `
+Array [
+  "name",
+  "resourceUri",
+  "category",
+  "units",
+  "description",
+  "associations",
+  "values",
+]
+`;
+
+exports[`basic Project 1`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "uri",
+  "modified",
+  "tagUris",
+  "protected",
+]
+`;
+
+exports[`basic Provider 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+  "providerTypeUri",
+  "status",
+  "state",
+  "projectUris",
+  "accessKey",
+  "secretKey",
+  "paymentProvider",
+  "s3CostBucket",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic ProviderType 1`] = `
+Object {
+  "count": 2,
+  "members": Array [
+    Object {
+      "id": "aws",
+      "logo": "https://d2p6eldpu75wyk.cloudfront.net/provider-thumb-amazon-web-services.svg",
+      "logoType": "https://d2p6eldpu75wyk.cloudfront.net/provider-logo-amazon-web-services.svg",
+      "name": "Amazon Web Services",
+      "uri": "/rest/provider-types/aws",
+    },
+    Object {
+      "id": "ncs",
+      "logo": "https://d2p6eldpu75wyk.cloudfront.net/provider-thumb-hpe-new-stack.svg",
+      "logoType": "https://d2p6eldpu75wyk.cloudfront.net/provider-logo-hpe-new-stack.svg",
+      "name": "HPE Private Cloud",
+      "uri": "/rest/provider-types/ncs",
+    },
+  ],
+  "start": 0,
+  "total": 2,
+}
+`;
+
+exports[`basic Rate 1`] = `
+Array [
+  "rateUri",
+  "resourceUri",
+  "resourceTerminated",
+  "metricName",
+  "name",
+  "effectiveDate",
+  "rateValue",
+  "unit",
+  "created",
+  "deleted",
+  "active",
+]
+`;
+
+exports[`basic Region 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+  "location",
+  "providerUri",
+  "status",
+  "state",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic Role 1`] = `
+Array [
+  "id",
+  "name",
+  "displayName",
+  "uri",
+]
+`;
+
+exports[`basic Service 1`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "detailedDescription",
+  "detailedDescriptionURL",
+  "regionUri",
+  "zoneUri",
+  "serviceTypeUri",
+  "uri",
+  "icon",
+  "catalogUri",
+  "versions",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic ServiceType 1`] = `
+Object {
+  "count": 4,
+  "members": Array [
+    Object {
+      "id": "container",
+      "name": "Container",
+      "uri": "/rest/service-types/container",
+    },
+    Object {
+      "id": "vm",
+      "name": "Virtual Machine",
+      "uri": "/rest/service-types/vm",
+    },
+    Object {
+      "id": "zone",
+      "name": "Kubernetes Cluster",
+      "uri": "/rest/service-types/zone",
+    },
+    Object {
+      "id": "chart",
+      "name": "Helm Chart",
+      "uri": "/rest/service-types/chart",
+    },
+  ],
+  "start": 0,
+  "total": 4,
+}
+`;
+
+exports[`basic Session 1`] = `
+Array [
+  "token",
+  "userUri",
+]
+`;
+
+exports[`basic Status 1`] = `
+Array [
+  "service",
+  "database",
+]
+`;
+
+exports[`basic Tag 1`] = `
+Array [
+  "id",
+  "tagKeyUri",
+  "name",
+  "uri",
+]
+`;
+
+exports[`basic TagKey 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+]
+`;
+
+exports[`basic User 1`] = `
+Array [
+  "id",
+  "email",
+  "name",
+  "uri",
+  "role",
+]
+`;
+
+exports[`basic VirtualMachineProfile 1`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "regionUri",
+  "zoneUri",
+  "uri",
+  "memorySizeGB",
+  "cpuCount",
+  "diskSizeGB",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic Zone 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+  "metrics",
+  "regionUri",
+  "zoneTypeUri",
+  "providerUri",
+  "status",
+  "state",
+  "currentTasks",
+  "clusters",
+  "managed",
+  "resourceCapacity",
+  "created",
+  "modified",
+]
+`;
+
+exports[`basic ZoneType 1`] = `
+Object {
+  "count": 3,
+  "members": Array [
+    Object {
+      "id": "aws-az",
+      "name": "AWS Availability Zone",
+      "uri": "/rest/zone-types/aws-az",
+    },
+    Object {
+      "id": "vcenter",
+      "name": "VMware Vcenter Availability Zone",
+      "uri": "/rest/zone-types/vcenter",
+    },
+    Object {
+      "id": "k8s",
+      "name": "Kubernetes Availability Zone",
+      "uri": "/rest/zone-types/kubernetes",
+    },
+  ],
+  "start": 0,
+  "total": 3,
+}
+`;

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rollie Add and remove user 1`] = `
+Array [
+  "id",
+  "email",
+  "name",
+  "uri",
+  "role",
+]
+`;
+
+exports[`rollie Add and remove user 2`] = `
+Array [
+  "id",
+  "email",
+  "name",
+  "uri",
+  "role",
+]
+`;
