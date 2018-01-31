@@ -6,7 +6,7 @@
   "repository": "https://github.com/HewlettPackard/hpe-onesphere-js",
   "license": "Apache-2.0",
   "scripts": {
-    "dist": "cross-env NODE_ENV=production webpack",
+    "dist": "./node_modules/.bin/webpack --config webpack.config.js",
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint --fix .",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
@@ -44,6 +44,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.5",
@@ -52,6 +53,7 @@
     "eslint-plugin-header": "^1.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^20.0.3",
-    "jest": "^21.0.1"
+    "jest": "^21.0.1",
+    "webpack": "^3.10.0"
   }
 }
