@@ -23,7 +23,9 @@ module.exports = {
       },
     ],
   },
+  target: 'node',
   node: {
+    global: true,
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
