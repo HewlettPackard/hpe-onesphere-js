@@ -51,9 +51,10 @@ export default class OneSphere {
 
   // session
 
-  postSession({ username, password }) {
+  postSession({ username, password, full }) {
     const options = this.postOptions({ username, password });
-    return fetcher(`${this.host}/rest/session`, options)
+    const fullQuery = full ? '?view=full' : '';
+    return fetcher(`${this.host}/rest/session${fullQuery}`, options)
       .then((session) => {
         this.headers.authorization = `Bearer ${session.token}`;
         return session;
