@@ -51,18 +51,18 @@ export default class OneSphere {
 
   // session
 
-  postSession({ username, password, full }) {
+  postSession({ username, password }) {
     const options = this.postOptions({ username, password });
-    const fullQuery = full ? '?view=full' : '';
-    return fetcher(`${this.host}/rest/session${fullQuery}`, options)
+    return fetcher(`${this.host}/rest/session`, options)
       .then((session) => {
         this.headers.authorization = `Bearer ${session.token}`;
         return session;
       });
   }
 
-  getSession() {
-    return fetcher(`${this.host}/rest/session`, { headers: this.headers });
+  getSession({ full }) {
+    const fullQuery = full ? '?view=full' : '';
+    return fetcher(`${this.host}/rest/session${fullQuery}`, { headers: this.headers });
   }
 
   // users
