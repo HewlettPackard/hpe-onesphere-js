@@ -6,7 +6,7 @@ Javascript bindings to the HPE OneSphere REST API.
 Install dependency
 
 ```
-yarn add "https://github.com/HewlettPackard/hpe-onesphere-js.git"
+npm i -S HewlettPackard/hpe-onesphere-js#dist
 ```
 
 Example usage
