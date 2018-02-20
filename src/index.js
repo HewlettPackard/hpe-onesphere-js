@@ -60,9 +60,9 @@ export default class OneSphere {
       });
   }
 
-  getSession({ full }) {
-    const fullQuery = full ? '?view=full' : '';
-    return fetcher(`${this.host}/rest/session${fullQuery}`, { headers: this.headers });
+  getSession({ view }) {
+    const viewQuery = view ? `?view=${view}` : '';
+    return fetcher(`${this.host}/rest/session${viewQuery}`, { headers: this.headers });
   }
 
   // users
@@ -189,8 +189,9 @@ export default class OneSphere {
 
   // regions
 
-  getRegions() {
-    return fetcher(`${this.host}/rest/regions`, { headers: this.headers });
+  getRegions({ view }) {
+    const viewQuery = view ? `?view=${view}` : '';
+    return fetcher(`${this.host}/rest/regions${viewQuery}`, { headers: this.headers });
   }
 
   getRegion(uri) {
