@@ -8,6 +8,8 @@ const HEADERS = {
   'Content-Type': 'application/json',
 };
 
+const getUrlParams = args => `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}`;
+
 const fetcher = (url, { proxy, ...rest }) =>
   fetch(url, {
     ...rest,
@@ -60,9 +62,9 @@ export default class OneSphere {
       });
   }
 
-  getSession({ view }) {
-    const viewQuery = view ? `?view=${view}` : '';
-    return fetcher(`${this.host}/rest/session${viewQuery}`, { headers: this.headers });
+  getSession(args) {
+    const params = args ? getUrlParams(args) : '';
+    return fetcher(`${this.host}/rest/session${params}`, { headers: this.headers });
   }
 
   // users
@@ -189,9 +191,9 @@ export default class OneSphere {
 
   // regions
 
-  getRegions({ view }) {
-    const viewQuery = view ? `?view=${view}` : '';
-    return fetcher(`${this.host}/rest/regions${viewQuery}`, { headers: this.headers });
+  getRegions(args) {
+    const params = args ? getUrlParams(args) : '';
+    return fetcher(`${this.host}/rest/regions${params}`, { headers: this.headers });
   }
 
   getRegion(uri) {
@@ -201,7 +203,7 @@ export default class OneSphere {
   // args: { force: true }
   removeRegion(uri, args) {
     const options = this.deleteOptions();
-    const params = args ? `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}` : '';
+    const params = args ? getUrlParams(args) : '';
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
@@ -238,8 +240,9 @@ export default class OneSphere {
 
   // projects
 
-  getProjects() {
-    return fetcher(`${this.host}/rest/projects`, { headers: this.headers });
+  getProjects(args) {
+    const params = args ? getUrlParams(args) : '';
+    return fetcher(`${this.host}/rest/projects${params}`, { headers: this.headers });
   }
 
   getProject(uri) {
