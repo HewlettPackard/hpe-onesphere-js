@@ -4,3 +4,7 @@ node_modules
 npm-debug.log
 .DS_Store
 setupJest.js
+webpack.config.js
+.eslintrc
+.babelrc
+yarn.lock
