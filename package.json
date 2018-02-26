@@ -1,5 +1,5 @@
 {
-  "name": "hpe-onesphere-js",
+  "name": "@hpe/hpe-onesphere-js",
   "version": "0.1.0",
   "main": "dist/index.js",
   "description": "HPE OneSphere Javascript API",
