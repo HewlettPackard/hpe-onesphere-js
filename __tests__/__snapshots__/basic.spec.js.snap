@@ -212,16 +212,6 @@ Object {
   "count": 4,
   "members": Array [
     Object {
-      "id": "chart",
-      "name": "Helm Chart",
-      "uri": "/rest/service-types/chart",
-    },
-    Object {
-      "id": "container",
-      "name": "Container",
-      "uri": "/rest/service-types/container",
-    },
-    Object {
       "id": "vm",
       "name": "Virtual Machine",
       "uri": "/rest/service-types/vm",
@@ -230,6 +220,16 @@ Object {
       "id": "zone",
       "name": "Kubernetes Cluster",
       "uri": "/rest/service-types/zone",
+    },
+    Object {
+      "id": "chart",
+      "name": "Helm Chart",
+      "uri": "/rest/service-types/chart",
+    },
+    Object {
+      "id": "container",
+      "name": "Container",
+      "uri": "/rest/service-types/container",
     },
   ],
   "start": 0,
