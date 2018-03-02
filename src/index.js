@@ -188,6 +188,18 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
   }
 
+  addTag(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/tags`, options);
+  }
+
+  removeTag(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  // no PATCH tag available
+
   // provider-types
 
   getProviderTypes() {

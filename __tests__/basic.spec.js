@@ -163,4 +163,38 @@ describe('add, update, delete', () => {
       .then(tagkey => oneSphere.removeTagKey(tagkey.uri))
       .then(() => done());
   }, 5000); // 5s empirically determined
+
+  // requires being 'analyst' and not only 'user'
+  // => should it be in a separate file analyst.spec.js?
+
+  test('Tag', (done) => {
+    const data = {
+      'tagKeyUri': '/rest/tag-keys/environment',
+      'name': 'Api Test tag',
+    };
+    // add project
+    oneSphere.addTag(data)
+      .then((tag) => {
+        expect(Object.keys(tag)).toMatchSnapshot();
+        expect(tag).toMatchObject(expect.objectContaining(data));
+        return tag;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+      // get tag
+      .then(tag => oneSphere.getTag(tag.uri))
+      .then((tag) => {
+        expect(Object.keys(tag)).toMatchSnapshot();
+        expect(tag).toMatchObject(expect.objectContaining(data));
+        return tag;
+      })
+
+      // no PATCH request to update tag availables
+
+      // remove tag
+      .then(tag => oneSphere.removeTag(tag.uri))
+      .then(() => done());
+  }, 5000); // 5s empirically determined
 });

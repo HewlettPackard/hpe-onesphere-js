@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`add, update, delete Tag 1`] = `
+Array [
+  "id",
+  "tagKeyUri",
+  "name",
+  "uri",
+]
+`;
+
+exports[`add, update, delete Tag 2`] = `
+Array [
+  "id",
+  "tagKeyUri",
+  "name",
+  "uri",
+]
+`;
+
 exports[`add, update, delete TagKey 1`] = `
 Array [
   "id",
