@@ -27,7 +27,7 @@ describe('rollie', () => {
       .then(() => done());
   });
 
-  test('Add and remove user', (done) => {
+  test('Add, update and remove user', (done) => {
     const data = {
       email: 'api@test.user',
       name: 'Api Test User',
@@ -49,6 +49,15 @@ describe('rollie', () => {
       .then(user => oneSphere.getUser(user.uri))
       .then((user) => {
         expect(Object.keys(user)).toMatchSnapshot();
+        expect(user).toMatchObject(expect.objectContaining(data));
+        return user;
+      })
+
+      // Update user
+      .then(user => oneSphere.updateUser(user.uri, { role: 'analyst' }))
+      .then((user) => {
+        expect(Object.keys(user)).toMatchSnapshot();
+        data.role = 'analyst';
         expect(user).toMatchObject(expect.objectContaining(data));
         return user;
       })

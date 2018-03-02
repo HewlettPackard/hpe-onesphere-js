@@ -38,6 +38,14 @@ export default class OneSphere {
     };
   }
 
+  patchOptions(data) {
+    return {
+      headers: this.headers,
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    };
+  }
+
   deleteOptions() {
     return {
       headers: this.headers,
@@ -84,6 +92,11 @@ export default class OneSphere {
 
   removeUser(uri) {
     const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  updateUser(uri, data) {
+    const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}`, options);
   }
 
