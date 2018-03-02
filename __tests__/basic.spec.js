@@ -179,9 +179,6 @@ describe('add, update, delete', () => {
         expect(tag).toMatchObject(expect.objectContaining(data));
         return tag;
       })
-      .catch((err) => {
-        console.log(err);
-      })
 
       // get tag
       .then(tag => oneSphere.getTag(tag.uri))
