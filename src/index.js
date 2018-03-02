@@ -262,6 +262,21 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
   }
 
+  addProject(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/projects`, options);
+  }
+
+  updateProject(uri, data) {
+    const options = this.patchOptions(data);
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  removeProject(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
   // deployments
 
   getDeployments() {
