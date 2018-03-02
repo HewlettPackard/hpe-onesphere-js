@@ -166,6 +166,18 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
   }
 
+  addTagKey(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/tag-keys`, options);
+  }
+
+  removeTagKey(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  // no PATCH Tag-key available
+
   // tags
 
   getTags() {
