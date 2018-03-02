@@ -38,6 +38,14 @@ export default class OneSphere {
     };
   }
 
+  patchOptions(data) {
+    return {
+      headers: this.headers,
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    };
+  }
+
   deleteOptions() {
     return {
       headers: this.headers,
@@ -84,6 +92,11 @@ export default class OneSphere {
 
   removeUser(uri) {
     const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  updateUser(uri, data) {
+    const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}`, options);
   }
 
@@ -153,6 +166,18 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
   }
 
+  addTagKey(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/tag-keys`, options);
+  }
+
+  removeTagKey(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  // no PATCH Tag-key available
+
   // tags
 
   getTags() {
@@ -162,6 +187,18 @@ export default class OneSphere {
   getTag(uri) {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
   }
+
+  addTag(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/tags`, options);
+  }
+
+  removeTag(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  // no PATCH tag available
 
   // provider-types
 
@@ -247,6 +284,21 @@ export default class OneSphere {
 
   getProject(uri) {
     return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  }
+
+  addProject(data) {
+    const options = this.postOptions(data);
+    return fetcher(`${this.host}/rest/projects`, options);
+  }
+
+  updateProject(uri, data) {
+    const options = this.patchOptions(data);
+    return fetcher(`${this.host}${uri}`, options);
+  }
+
+  removeProject(uri) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    return fetcher(`${this.host}${uri}`, options);
   }
 
   // deployments

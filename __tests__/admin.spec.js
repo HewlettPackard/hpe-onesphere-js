@@ -27,7 +27,7 @@ describe('rollie', () => {
       .then(() => done());
   });
 
-  test('Add and remove user', (done) => {
+  test('Add, update and remove user', (done) => {
     const data = {
       email: 'api@test.user',
       name: 'Api Test User',
@@ -53,11 +53,58 @@ describe('rollie', () => {
         return user;
       })
 
+      // Update user
+      .then(user => oneSphere.updateUser(user.uri, { role: 'analyst' }))
+      .then((user) => {
+        expect(Object.keys(user)).toMatchSnapshot();
+        data.role = 'analyst';
+        expect(user).toMatchObject(expect.objectContaining(data));
+        return user;
+      })
+
       // Remove user
       .then(user => oneSphere.removeUser(user.uri))
       .then(() => done());
 
     // ).resolves.toBeDefined();
+  }, 10000); // 10s, empirically determined
+
+  test('Add, update and remove project', (done) => {
+    const data = {
+      'name': 'Api Test Project',
+      'description': 'Api Test Project Description',
+      'tagUris': [
+        '/rest/tags/environment=development',
+      ],
+    };
+    // add project
+    oneSphere.addProject(data)
+      .then((project) => {
+        expect(Object.keys(project)).toMatchSnapshot();
+        expect(project).toMatchObject(expect.objectContaining(data));
+        return project;
+      })
+
+      // get project
+      .then(project => oneSphere.getProject(project.uri))
+      .then((project) => {
+        expect(Object.keys(project)).toMatchSnapshot();
+        expect(project).toMatchObject(expect.objectContaining(data));
+        return project;
+      })
+
+      // Update project
+      .then(project => oneSphere.updateProject(project.uri, { description: 'updated description' }))
+      .then((project) => {
+        expect(Object.keys(project)).toMatchSnapshot();
+        data.description = 'updated description';
+        expect(project).toMatchObject(expect.objectContaining(data));
+        return project;
+      })
+
+      // remove project
+      .then(project => oneSphere.removeProject(project.uri))
+      .then(() => done());
   }, 10000); // 10s, empirically determined
 
   // test('Onboard AWS provider', (done) => {

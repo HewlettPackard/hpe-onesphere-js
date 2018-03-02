@@ -1,6 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rollie Add and remove user 1`] = `
+exports[`rollie Add, update and remove project 1`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "uri",
+  "modified",
+  "tagUris",
+  "protected",
+]
+`;
+
+exports[`rollie Add, update and remove project 2`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "uri",
+  "modified",
+  "tagUris",
+  "protected",
+]
+`;
+
+exports[`rollie Add, update and remove project 3`] = `
+Array [
+  "id",
+  "name",
+  "description",
+  "uri",
+  "modified",
+  "tagUris",
+  "protected",
+]
+`;
+
+exports[`rollie Add, update and remove user 1`] = `
 Array [
   "id",
   "email",
@@ -10,7 +46,17 @@ Array [
 ]
 `;
 
-exports[`rollie Add and remove user 2`] = `
+exports[`rollie Add, update and remove user 2`] = `
+Array [
+  "id",
+  "email",
+  "name",
+  "uri",
+  "role",
+]
+`;
+
+exports[`rollie Add, update and remove user 3`] = `
 Array [
   "id",
   "email",

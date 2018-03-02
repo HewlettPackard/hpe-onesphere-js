@@ -124,3 +124,74 @@ describe('basic', () => {
       .then(metrics => Object.keys(metrics.members[0])))
       .resolves.toMatchSnapshot());
 });
+
+describe('add, update, delete', () => {
+  let oneSphere;
+
+  beforeAll((done) => {
+    oneSphere = new OneSphere(URL);
+    oneSphere.postSession({ username: USERNAME, password: PASSWORD })
+      .then(() => done());
+  });
+
+  // requires being 'analyst' and not only 'user'
+  // => should it be in a separate file analyst.spec.js?
+
+  test('TagKey', (done) => {
+    const data = {
+      'name': 'Api Test TagKey',
+    };
+    // add project
+    oneSphere.addTagKey(data)
+      .then((tagkey) => {
+        expect(Object.keys(tagkey)).toMatchSnapshot();
+        expect(tagkey).toMatchObject(expect.objectContaining(data));
+        return tagkey;
+      })
+
+      // get tagkey
+      .then(tagkey => oneSphere.getTagKey(tagkey.uri))
+      .then((tagkey) => {
+        expect(Object.keys(tagkey)).toMatchSnapshot();
+        expect(tagkey).toMatchObject(expect.objectContaining(data));
+        return tagkey;
+      })
+
+      // no PATCH request to update tagkey availables
+
+      // remove tagkey
+      .then(tagkey => oneSphere.removeTagKey(tagkey.uri))
+      .then(() => done());
+  }, 5000); // 5s empirically determined
+
+  // requires being 'analyst' and not only 'user'
+  // => should it be in a separate file analyst.spec.js?
+
+  test('Tag', (done) => {
+    const data = {
+      'tagKeyUri': '/rest/tag-keys/environment',
+      'name': 'Api Test tag',
+    };
+    // add project
+    oneSphere.addTag(data)
+      .then((tag) => {
+        expect(Object.keys(tag)).toMatchSnapshot();
+        expect(tag).toMatchObject(expect.objectContaining(data));
+        return tag;
+      })
+
+      // get tag
+      .then(tag => oneSphere.getTag(tag.uri))
+      .then((tag) => {
+        expect(Object.keys(tag)).toMatchSnapshot();
+        expect(tag).toMatchObject(expect.objectContaining(data));
+        return tag;
+      })
+
+      // no PATCH request to update tag availables
+
+      // remove tag
+      .then(tag => oneSphere.removeTag(tag.uri))
+      .then(() => done());
+  }, 5000); // 5s empirically determined
+});

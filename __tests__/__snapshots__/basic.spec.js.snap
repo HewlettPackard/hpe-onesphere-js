@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`add, update, delete Tag 1`] = `
+Array [
+  "id",
+  "tagKeyUri",
+  "name",
+  "uri",
+]
+`;
+
+exports[`add, update, delete Tag 2`] = `
+Array [
+  "id",
+  "tagKeyUri",
+  "name",
+  "uri",
+]
+`;
+
+exports[`add, update, delete TagKey 1`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+]
+`;
+
+exports[`add, update, delete TagKey 2`] = `
+Array [
+  "id",
+  "name",
+  "uri",
+]
+`;
+
 exports[`basic Catalog 1`] = `
 Array [
   "id",
@@ -36,14 +70,15 @@ Array [
   "serviceTypeUri",
   "virtualMachineProfileUri",
   "status",
+  "state",
   "memorySizeGB",
   "cpuCount",
   "cpuGhz",
   "diskSizeGB",
   "uri",
   "projectUri",
+  "deploymentEndpoints",
   "hasConsole",
-  "errorMessage",
   "created",
   "modified",
 ]
@@ -82,8 +117,6 @@ Array [
   "status",
   "state",
   "projectUris",
-  "accessKey",
-  "secretKey",
   "paymentProvider",
   "s3CostBucket",
   "created",
@@ -106,7 +139,7 @@ Object {
       "id": "ncs",
       "logo": "https://d2p6eldpu75wyk.cloudfront.net/provider-thumb-hpe-new-stack.svg",
       "logoType": "https://d2p6eldpu75wyk.cloudfront.net/provider-logo-hpe-new-stack.svg",
-      "name": "HPE Private Cloud",
+      "name": "Private Cloud",
       "uri": "/rest/provider-types/ncs",
     },
   ],
@@ -163,6 +196,7 @@ Array [
   "detailedDescriptionURL",
   "regionUri",
   "zoneUri",
+  "projectUri",
   "serviceTypeUri",
   "uri",
   "icon",
@@ -178,11 +212,6 @@ Object {
   "count": 4,
   "members": Array [
     Object {
-      "id": "container",
-      "name": "Container",
-      "uri": "/rest/service-types/container",
-    },
-    Object {
       "id": "vm",
       "name": "Virtual Machine",
       "uri": "/rest/service-types/vm",
@@ -196,6 +225,11 @@ Object {
       "id": "chart",
       "name": "Helm Chart",
       "uri": "/rest/service-types/chart",
+    },
+    Object {
+      "id": "container",
+      "name": "Container",
+      "uri": "/rest/service-types/container",
     },
   ],
   "start": 0,
