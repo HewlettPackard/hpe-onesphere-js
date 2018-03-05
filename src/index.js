@@ -303,8 +303,9 @@ export default class OneSphere {
 
   // deployments
 
-  getDeployments() {
-    return fetcher(`${this.host}/rest/deployments`, { headers: this.headers });
+  getDeployments(args) {
+    const params = args ? getUrlParams(args) : '';
+    return fetcher(`${this.host}/rest/deployments${params}`, { headers: this.headers });
   }
 
   getDeployment(uri) {

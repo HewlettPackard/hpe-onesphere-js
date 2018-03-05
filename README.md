@@ -66,7 +66,7 @@ getProject(uri)
 addProject(data)
 updateProject(uri, data)
 removeProject(uri)
-getDeployments()
+getDeployments(args)
 getDeployment(uri)
 getMetrics(options)
 ```
