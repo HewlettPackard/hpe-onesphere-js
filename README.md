@@ -12,7 +12,7 @@ npm i @hpe/hpe-onesphere-js
 Example usage
 
 ```
-import OneSphere from 'hpe-onesphere-js';
+import OneSphere from '@hpe/hpe-onesphere-js';
 
 const oneSphere = new OneSphere(host);
 oneSphere.postSession({ username: ..., password: ... })
