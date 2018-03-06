@@ -68,7 +68,7 @@ updateProject(uri, data, args)
 removeProject(uri, args)
 getDeployments(args)
 getDeployment(uri, args)
-getMetrics(options)
+getMetrics(args)
 ```
 
 ## Development

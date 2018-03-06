@@ -356,8 +356,8 @@ export default class OneSphere {
 
   // metrics
 
-  getMetrics(options) {
-    const params = options ? `?${Object.keys(options).map(k => `${k}=${encodeURIComponent(options[k])}`).join('&')}` : '';
+  getMetrics(args) {
+    const params = args ? getUrlParams(args) : '';
     return fetcher(`${this.host}/rest/metrics${params}`, { headers: this.headers });
   }
 }
