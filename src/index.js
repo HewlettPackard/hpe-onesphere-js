@@ -56,6 +56,9 @@ export default class OneSphere {
   // status
 
   getStatus(args) {
+    if (args && typeof args !== 'object') {
+      throw new Error('args parameter should be an object');
+    }
     const params = args ? getUrlParams(args) : '';
     return fetcher(`${this.host}/rest/status${params}`, { headers: this.headers });
   }
