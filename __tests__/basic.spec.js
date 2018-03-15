@@ -32,6 +32,20 @@ describe('basic', () => {
       .then(status => Object.keys(status)))
       .resolves.toMatchSnapshot());
 
+  test('Status error args (string)', () => {
+    expect(() => {
+      oneSphere.getStatus('parameterShouldBeAnObject');
+    })
+      .toThrowError('args parameter should be an object');
+  });
+
+  test('Status error args (array)', () => {
+    expect(() => {
+      oneSphere.getStatus(['parametershouldbean', 'object']);
+    })
+      .toThrowError('args parameter should be an object');
+  });
+
   test('Session', () =>
     expect(oneSphere.getSession()
       .then(session => Object.keys(session)))

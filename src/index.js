@@ -8,7 +8,12 @@ const HEADERS = {
   'Content-Type': 'application/json',
 };
 
-const getUrlParams = args => `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}`;
+const getUrlParams = (args) => {
+  if (args && (typeof args !== 'object' || Array.isArray(args))) {
+    throw new Error('args parameter should be an object');
+  }
+  return args ? `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}` : '';
+};
 
 const fetcher = (url, { proxy, ...rest }) =>
   fetch(url, {
@@ -55,8 +60,9 @@ export default class OneSphere {
 
   // status
 
-  getStatus() {
-    return fetcher(`${this.host}/rest/status`, { headers: this.headers });
+  getStatus(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/status${params}`, { headers: this.headers });
   }
 
   // session
@@ -71,250 +77,292 @@ export default class OneSphere {
   }
 
   getSession(args) {
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/session${params}`, { headers: this.headers });
   }
 
   // users
 
-  getUsers() {
-    return fetcher(`${this.host}/rest/users`, { headers: this.headers });
+  getUsers(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/users${params}`, { headers: this.headers });
   }
 
-  addUser(data) {
+  addUser(data, args) {
     const options = this.postOptions(data);
-    return fetcher(`${this.host}/rest/users`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/users${params}`, options);
   }
 
-  getUser(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getUser(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  removeUser(uri) {
+  removeUser(uri, args) {
     const options = { headers: this.headers, method: 'DELETE' };
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateUser(uri, data) {
+  updateUser(uri, data, args) {
     const options = this.patchOptions(data);
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // roles
 
-  getRoles() {
-    return fetcher(`${this.host}/rest/roles`, { headers: this.headers });
+  getRoles(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/roles${params}`, { headers: this.headers });
   }
 
-  getRole(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getRole(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // catalog-types
 
-  getCatalogTypes() {
-    return fetcher(`${this.host}/rest/catalog-types`, { headers: this.headers });
+  getCatalogTypes(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/catalog-types${params}`, { headers: this.headers });
   }
 
-  getCatalogType(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getCatalogType(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // catalogs
 
-  getCatalogs() {
-    return fetcher(`${this.host}/rest/catalogs`, { headers: this.headers });
+  getCatalogs(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/catalogs${params}`, { headers: this.headers });
   }
 
-  getCatalog(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getCatalog(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // service-types
 
-  getServiceTypes() {
-    return fetcher(`${this.host}/rest/service-types`, { headers: this.headers });
+  getServiceTypes(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/service-types${params}`, { headers: this.headers });
   }
 
   // services
 
-  getServices() {
-    return fetcher(`${this.host}/rest/services`, { headers: this.headers });
+  getServices(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/services${params}`, { headers: this.headers });
   }
 
-  getService(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getService(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // virtual-machine-profiles
 
-  getVirtualMachineProfiles() {
-    return fetcher(`${this.host}/rest/virtual-machine-profiles`, { headers: this.headers });
+  getVirtualMachineProfiles(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/virtual-machine-profiles${params}`, { headers: this.headers });
   }
 
-  getVirtualMachineProfile(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getVirtualMachineProfile(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // tag-keys
 
-  getTagKeys() {
-    return fetcher(`${this.host}/rest/tag-keys`, { headers: this.headers });
+  getTagKeys(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/tag-keys${params}`, { headers: this.headers });
   }
 
-  getTagKey(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getTagKey(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addTagKey(data) {
+  addTagKey(data, args) {
     const options = this.postOptions(data);
-    return fetcher(`${this.host}/rest/tag-keys`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/tag-keys${params}`, options);
   }
 
-  removeTagKey(uri) {
+  removeTagKey(uri, args) {
     const options = { headers: this.headers, method: 'DELETE' };
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // no PATCH Tag-key available
 
   // tags
 
-  getTags() {
-    return fetcher(`${this.host}/rest/tags`, { headers: this.headers });
+  getTags(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/tags${params}`, { headers: this.headers });
   }
 
-  getTag(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getTag(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addTag(data) {
+  addTag(data, args) {
     const options = this.postOptions(data);
-    return fetcher(`${this.host}/rest/tags`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/tags${params}`, options);
   }
 
-  removeTag(uri) {
+  removeTag(uri, args) {
     const options = { headers: this.headers, method: 'DELETE' };
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // no PATCH tag available
 
   // provider-types
 
-  getProviderTypes() {
-    return fetcher(`${this.host}/rest/provider-types`, { headers: this.headers });
+  getProviderTypes(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/provider-types${params}`, { headers: this.headers });
   }
 
   // providers
 
-  getProviders() {
-    return fetcher(`${this.host}/rest/providers`, { headers: this.headers });
+  getProviders(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/providers${params}`, { headers: this.headers });
   }
 
-  addProvider(data) {
+  addProvider(data, args) {
     const options = this.postOptions(data);
-    return fetcher(`${this.host}/rest/providers`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/providers${params}`, options);
   }
 
-  getProvider(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getProvider(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  removeProvider(uri) {
+  removeProvider(uri, args) {
     const options = this.deleteOptions();
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // regions
 
   getRegions(args) {
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/regions${params}`, { headers: this.headers });
   }
 
-  getRegion(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getRegion(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // args: { force: true }
   removeRegion(uri, args) {
     const options = this.deleteOptions();
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // zone-types
 
-  getZoneTypes() {
-    return fetcher(`${this.host}/rest/zone-types`, { headers: this.headers });
+  getZoneTypes(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/zone-types${params}`, { headers: this.headers });
   }
 
   // zones
 
-  getZones() {
-    return fetcher(`${this.host}/rest/zones`, { headers: this.headers });
+  getZones(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/zones${params}`, { headers: this.headers });
   }
 
-  getZone(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getZone(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  removeZone(uri) {
+  removeZone(uri, args) {
     const options = this.deleteOptions();
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // rates
 
-  getRates() {
-    return fetcher(`${this.host}/rest/rates`, { headers: this.headers });
+  getRates(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/rates${params}`, { headers: this.headers });
   }
 
-  getRate(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getRate(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // projects
 
   getProjects(args) {
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/projects${params}`, { headers: this.headers });
   }
 
-  getProject(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getProject(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addProject(data) {
+  addProject(data, args) {
     const options = this.postOptions(data);
-    return fetcher(`${this.host}/rest/projects`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/projects${params}`, options);
   }
 
-  updateProject(uri, data) {
+  updateProject(uri, data, args) {
     const options = this.patchOptions(data);
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  removeProject(uri) {
+  removeProject(uri, args) {
     const options = { headers: this.headers, method: 'DELETE' };
-    return fetcher(`${this.host}${uri}`, options);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // deployments
 
-  getDeployments() {
-    return fetcher(`${this.host}/rest/deployments`, { headers: this.headers });
+  getDeployments(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/deployments${params}`, { headers: this.headers });
   }
 
-  getDeployment(uri) {
-    return fetcher(`${this.host}${uri}`, { headers: this.headers });
+  getDeployment(uri, args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // metrics
 
-  getMetrics(options) {
-    const params = options ? `?${Object.keys(options).map(k => `${k}=${encodeURIComponent(options[k])}`).join('&')}` : '';
+  getMetrics(args) {
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/metrics${params}`, { headers: this.headers });
   }
 }
