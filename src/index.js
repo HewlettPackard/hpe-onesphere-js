@@ -8,7 +8,7 @@ const HEADERS = {
   'Content-Type': 'application/json',
 };
 
-const getUrlParams = args => `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}`;
+const getUrlParams = args => args ? `?${Object.keys(args).map(k => `${k}=${encodeURIComponent(args[k])}`).join('&')}` : '';
 
 const fetcher = (url, { proxy, ...rest }) =>
   fetch(url, {
@@ -56,10 +56,10 @@ export default class OneSphere {
   // status
 
   getStatus(args) {
-    if (args && typeof args !== 'object') {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
       throw new Error('args parameter should be an object');
     }
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/status${params}`, { headers: this.headers });
   }
 
@@ -75,128 +75,191 @@ export default class OneSphere {
   }
 
   getSession(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/session${params}`, { headers: this.headers });
   }
 
   // users
 
   getUsers(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/users${params}`, { headers: this.headers });
   }
 
   addUser(data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.postOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/users${params}`, options);
   }
 
   getUser(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   removeUser(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = { headers: this.headers, method: 'DELETE' };
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   updateUser(uri, data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.patchOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // roles
 
   getRoles(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/roles${params}`, { headers: this.headers });
   }
 
   getRole(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // catalog-types
 
   getCatalogTypes(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/catalog-types${params}`, { headers: this.headers });
   }
 
   getCatalogType(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // catalogs
 
   getCatalogs(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/catalogs${params}`, { headers: this.headers });
   }
 
   getCatalog(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // service-types
 
   getServiceTypes(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/service-types${params}`, { headers: this.headers });
   }
 
   // services
 
   getServices(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/services${params}`, { headers: this.headers });
   }
 
   getService(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // virtual-machine-profiles
 
   getVirtualMachineProfiles(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/virtual-machine-profiles${params}`, { headers: this.headers });
   }
 
   getVirtualMachineProfile(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // tag-keys
 
   getTagKeys(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/tag-keys${params}`, { headers: this.headers });
   }
 
   getTagKey(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   addTagKey(data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.postOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/tag-keys${params}`, options);
   }
 
   removeTagKey(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = { headers: this.headers, method: 'DELETE' };
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
@@ -205,24 +268,36 @@ export default class OneSphere {
   // tags
 
   getTags(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/tags${params}`, { headers: this.headers });
   }
 
   getTag(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   addTag(data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.postOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/tags${params}`, options);
   }
 
   removeTag(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = { headers: this.headers, method: 'DELETE' };
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
@@ -231,136 +306,199 @@ export default class OneSphere {
   // provider-types
 
   getProviderTypes(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/provider-types${params}`, { headers: this.headers });
   }
 
   // providers
 
   getProviders(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/providers${params}`, { headers: this.headers });
   }
 
   addProvider(data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.postOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/providers${params}`, options);
   }
 
   getProvider(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   removeProvider(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.deleteOptions();
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // regions
 
   getRegions(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/regions${params}`, { headers: this.headers });
   }
 
   getRegion(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // args: { force: true }
   removeRegion(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.deleteOptions();
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // zone-types
 
   getZoneTypes(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/zone-types${params}`, { headers: this.headers });
   }
 
   // zones
 
   getZones(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/zones${params}`, { headers: this.headers });
   }
 
   getZone(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   removeZone(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.deleteOptions();
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // rates
 
   getRates(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/rates${params}`, { headers: this.headers });
   }
 
   getRate(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // projects
 
   getProjects(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/projects${params}`, { headers: this.headers });
   }
 
   getProject(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   addProject(data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.postOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/projects${params}`, options);
   }
 
   updateProject(uri, data, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = this.patchOptions(data);
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   removeProject(uri, args) {
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
     const options = { headers: this.headers, method: 'DELETE' };
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // deployments
 
   getDeployments(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/deployments${params}`, { headers: this.headers });
   }
 
   getDeployment(uri, args) {
-    const params = args ? getUrlParams(args) : '';
+    const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
   // metrics
 
   getMetrics(args) {
-    const params = args ? getUrlParams(args) : '';
+    if (args && (typeof args !== 'object' || Array.isArray(args))) {
+      throw new Error('args parameter should be an object');
+    }
+    const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/metrics${params}`, { headers: this.headers });
   }
 }
