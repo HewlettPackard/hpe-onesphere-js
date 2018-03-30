@@ -60,14 +60,17 @@ getZones(args)
 getZone(uri, args)
 getRates(args)
 getRate(uri, args)
+getNetworks(args)
 
 getProjects(args)
 getProject(uri, args)
 addProject(data, args)
 updateProject(uri, data, args)
 removeProject(uri, args)
+createDeployment(args)
 getDeployments(args)
 getDeployment(uri, args)
+removeDeployment(uri, args)
 getMetrics(args)
 ```
 

@@ -20,12 +20,34 @@ if (!URL || !USERNAME || !PASSWORD) {
 
 describe('rollie', () => {
   let oneSphere;
+  let projectTestDeploymentUri;
 
   beforeAll((done) => {
     oneSphere = new OneSphere(URL);
     oneSphere.postSession({ username: USERNAME, password: PASSWORD })
-      .then(() => done());
+      .then(() => {
+        const data = {
+          'name': 'Api Test Deployment',
+          'description': 'Api Test Deployment Description',
+          'tagUris': [
+            '/rest/tags/environment=development',
+          ],
+        };
+        // add project
+        oneSphere.addProject(data)
+          .then((project) => {
+            projectTestDeploymentUri = project.uri;
+            done();
+          });
+      });
   });
+
+  afterAll((done) => {
+    setTimeout(() => {
+      oneSphere.removeProject(projectTestDeploymentUri)
+        .then(() => done());
+    }, 10000); // wait for 10 (arbitrary) seconds to make sure the deployment was stopped
+  }, 15000); // wait for 10+5 seconds (arbitrary)
 
   test('Add, update and remove user', (done) => {
     const data = {
@@ -69,7 +91,7 @@ describe('rollie', () => {
     // ).resolves.toBeDefined();
   }, 10000); // 10s, empirically determined
 
-  test('Add, update and remove project', (done) => {
+  test('Add, update and remove project + create and remove deployment', (done) => {
     const data = {
       'name': 'Api Test Project',
       'description': 'Api Test Project Description',
@@ -106,6 +128,61 @@ describe('rollie', () => {
       .then(project => oneSphere.removeProject(project.uri))
       .then(() => done());
   }, 10000); // 10s, empirically determined
+
+
+  test('Create and delete deployment (+getZones+getServices+getVirtualMachineProfiles+getNetworks)', (done) => {
+    // prerequisites: assumes:
+    // - your oneSphere instance has a vCenter provider
+    // - you have a template that fits one of the profiles provided by oneSphere (https://cic-demo-hpe.hpeonesphere.com/docs/api/endpoint?&path=%2Fvirtual-machine-profiles)
+    // - you have networks associated to the vCenter provider
+    Promise.all([
+      oneSphere.getZones({ count: -1 }),
+      oneSphere.getServices({ count: -1 }),
+      oneSphere.getVirtualMachineProfiles({ count: -1 }),
+    ])
+      .then((APIdata) => {
+        const zones = APIdata[0];
+        const services = APIdata[1];
+        const vmProfiles = APIdata[2];
+        const vCenterZone = zones.members
+          .filter(item => item.zoneTypeUri === '/rest/zone-types/vcenter')[0];
+
+        oneSphere.getNetworks({ count: -1, query: `zoneUri EQ ${vCenterZone.uri}` })
+          .then((networks) => {
+            const vmProfile = vmProfiles.members
+              .filter(item => item.zoneUri === vCenterZone.uri && item.diskSizeGB >= 20)[0];
+            const service = services.members
+              .filter(item => item.zoneUri === vCenterZone.uri)[0];
+            const network = networks.members
+              .filter(item => item.zoneUri === vCenterZone.uri)[0];
+            const dataDeployment = {
+              'assignExternalIP': false,
+              'name': 'api-test-deployment',
+              'projectUri': projectTestDeploymentUri,
+              // 'publicKey': '', // no public key
+              'regionUri': vCenterZone.regionUri, // from getZones().members[1]
+              'serviceUri': service.uri,
+              // 'userData': '', // no user data (<=> cloud-init)
+              // 'version': 'string', // ??
+              'virtualMachineProfileUri': vmProfile.uri, // from vmProfile mapping to zone
+              'zoneUri': vCenterZone.uri,
+              'networks': [{
+                networkUri: network.uri,
+              }],
+            };
+
+            oneSphere.addDeployment(dataDeployment)
+              .then((deployment) => {
+                expect(Object.keys(deployment)).toMatchSnapshot();
+                return deployment;
+              })
+              .then((deployment) => {
+                oneSphere.removeDeployment(deployment.uri)
+                  .then(() => done());
+              });
+          });
+      });
+  }, 20000); // 20 sec
 
   // test('Onboard AWS provider', (done) => {
   //   expect(ns.getProviderTypes()
