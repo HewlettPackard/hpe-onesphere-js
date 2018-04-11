@@ -1,41 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rollie Add, update and remove project 1`] = `
-Array [
-  "id",
-  "name",
-  "description",
-  "uri",
-  "modified",
-  "tagUris",
-  "protected",
-]
-`;
-
-exports[`rollie Add, update and remove project 2`] = `
-Array [
-  "id",
-  "name",
-  "description",
-  "uri",
-  "modified",
-  "tagUris",
-  "protected",
-]
-`;
-
-exports[`rollie Add, update and remove project 3`] = `
-Array [
-  "id",
-  "name",
-  "description",
-  "uri",
-  "modified",
-  "tagUris",
-  "protected",
-]
-`;
-
 exports[`rollie Add, update and remove user 1`] = `
 Array [
   "id",
@@ -63,5 +27,21 @@ Array [
   "name",
   "uri",
   "role",
+]
+`;
+
+exports[`rollie Create and delete deployment 1`] = `
+Array [
+  "id",
+  "name",
+  "zoneUri",
+  "regionUri",
+  "virtualMachineProfileUri",
+  "status",
+  "uri",
+  "projectUri",
+  "hasConsole",
+  "created",
+  "modified",
 ]
 `;

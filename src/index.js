@@ -317,6 +317,13 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
+  // networks
+
+  getNetworks(args) {
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/networks${params}`, { headers: this.headers });
+  }
+
   // projects
 
   getProjects(args) {
@@ -349,6 +356,12 @@ export default class OneSphere {
 
   // deployments
 
+  addDeployment(data, args) {
+    const options = this.postOptions(data);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}/rest/deployments${params}`, options);
+  }
+
   getDeployments(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/deployments${params}`, { headers: this.headers });
@@ -357,6 +370,12 @@ export default class OneSphere {
   getDeployment(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
+  }
+
+  removeDeployment(uri, args) {
+    const options = { headers: this.headers, method: 'DELETE' };
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
   }
 
   // metrics
