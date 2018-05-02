@@ -279,6 +279,12 @@ export default class OneSphere {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
+  
+  updateRegion(uri, data, args) {
+    const options = this.patchOptions(data);
+    const params = getUrlParams(args);
+    return fetcher(`${this.host}${uri}${params}`, options);
+  }
 
   // zone-types
 
