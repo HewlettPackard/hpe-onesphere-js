@@ -1,7 +1,8 @@
 {
   "name": "@hpe/hpe-onesphere-js",
-  "version": "0.1.5",
-  "main": "dist/index.js",
+  "version": "0.1.6",
+  "main": "dist/index.node.js",
+  "browser": "dist/index.js",
   "description": "HPE OneSphere Javascript API",
   "repository": "https://github.com/HewlettPackard/hpe-onesphere-js",
   "license": "Apache-2.0",

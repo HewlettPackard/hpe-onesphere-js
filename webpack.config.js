@@ -1,10 +1,10 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = {
+const createConfig = target => ({
   entry: './src/index.js',
   output: {
-    filename: 'index.js',
+    filename: target === 'web' ? 'index.js' : `index.${target}.js`,
     path: path.resolve(__dirname, 'dist'),
     library: 'hpe-onesphere-js',
     libraryTarget: 'umd',
@@ -23,7 +23,7 @@ module.exports = {
       },
     ],
   },
-  target: 'node',
+  target,
   node: {
     global: true,
     fs: 'empty',
@@ -35,4 +35,6 @@ module.exports = {
       parallel: true,
     }),
   ],
-};
+});
+
+module.exports = [createConfig('web'), createConfig('node')];
