@@ -173,18 +173,6 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/catalogs${params}`, { headers: this.headers });
   }
 
-  removeCatalog(uri, args){
-    const params = getUrlParams(args);
-    const options = { headers: this.headers, method: 'DELETE' };
-    return fetcher(`${this.host}${uri}${params}`, options);
-  }
-
-  updateCatalog(uri, data, args){
-    const params = getUrlParams(args);
-    const options = this.patchOptions(data);
-    return fetcher(`${this.host}${uri}${params}`, options);
-  }
-
   //Not implemented
   removeCatalog(uri, args){
     const params = getUrlParams(args);
@@ -383,7 +371,7 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/zone-types${params}${params}`, { headers: this.headers });
   }
 
-  getZoneTypeResourceProfiles(uri, args){
+  getZoneTypeResourceProfiles(uri, args) {
     const params = getUrlParams(args);
       return fetcher(`${this.host}${uri}/resource-profiles${params}`, { headers: this.headers });
   }
@@ -516,6 +504,7 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
+  //Not implemented
   removeProject(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
