@@ -88,18 +88,18 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/session${params}`, { headers: this.headers });
   }
 
-  //Not implemented
-  getSessionIdp(args){
+  // Not implemented
+  getSessionIdp(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/session/idp${params}`, { headers: this.headers });
   }
 
-  getSessionSSO(args){
+  getSessionSSO(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/session/sso${params}`, { headers: this.headers });
   }
 
-  callbackSessionSSO(args){
+  callbackSessionSSO(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/users${params}`, { headers: this.headers });
   }
@@ -167,20 +167,20 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addCatalog(data, args){
+  addCatalog(data, args) {
     const params = getUrlParams(args);
-    const options = this.patchOptions(data);
+    const options = this.patchOptions(data); // eslint-disable-line
     return fetcher(`${this.host}/rest/catalogs${params}`, { headers: this.headers });
   }
 
-  //Not implemented
-  removeCatalog(uri, args){
+  // Not implemented
+  removeCatalog(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateCatalog(uri, data, args){
+  updateCatalog(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -193,7 +193,7 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/service-types${params}`, { headers: this.headers });
   }
 
-  getServiceType(args){
+  getServiceType(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/service-types${params}`, { headers: this.headers });
   }
@@ -305,7 +305,7 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateProvider(uri, data, args){
+  updateProvider(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -323,7 +323,7 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addRegion(data, args){
+  addRegion(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/regions${params}`, options);
@@ -342,24 +342,24 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  getRegionConnection(uri, args){
+  getRegionConnection(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/connection${params}`, { headers: this.headers });
   }
 
-  addRegionConnection(uri, data, args){
+  addRegionConnection(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}${uri}/connection${params}`, options);
   }
 
-  removeRegionConnection(uri, args){
+  removeRegionConnection(uri, args) {
     const params = getUrlParams(args);
     const options = this.deleteOptions();
     return fetcher(`${this.host}${uri}/connection${params}`, options);
   }
 
-  getRegionConnectorImage(uri, args){
+  getRegionConnectorImage(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/connector-image${params}`, { headers: this.headers });
   }
@@ -373,7 +373,7 @@ export default class OneSphere {
 
   getZoneTypeResourceProfiles(uri, args) {
     const params = getUrlParams(args);
-      return fetcher(`${this.host}${uri}/resource-profiles${params}`, { headers: this.headers });
+    return fetcher(`${this.host}${uri}/resource-profiles${params}`, { headers: this.headers });
   }
 
   // zones
@@ -394,52 +394,52 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  addZone(data, args){
+  addZone(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/zones${params}`, options);
   }
 
-  updateZone(uri, data, args){
+  updateZone(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  actionOnZone(uri, data, args){
+  actionOnZone(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}${uri}/actions${params}`, options);
   }
 
-  getZoneApplianceImage(uri, args){
+  getZoneApplianceImage(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/appliance-image${params}`, { headers: this.headers });
   }
 
-  getZoneTaskStatus(uri, args){
+  getZoneTaskStatus(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/task-status${params}`, { headers: this.headers });
   }
 
-  getZoneConnections(uri, args){
+  getZoneConnections(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/connections${params}`, { headers: this.headers });
   }
 
-  addZoneConnection(uri, data, args){
+  addZoneConnection(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}${uri}/connections${params}`, options);
   }
 
-  removeZoneConnection(uri, uuid, args){
+  removeZoneConnection(uri, uuid, args) {
     const params = getUrlParams(args);
     const options = this.deleteOptions();
     return fetcher(`${this.host}${uri}/connections/${uuid}${params}`, options);
   }
 
-  updateZoneConnection(uri, data, uuid, args){
+  updateZoneConnection(uri, data, uuid, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}/connections/${uuid}${params}`, options);
@@ -469,12 +469,12 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/networks${params}`, { headers: this.headers });
   }
 
-  getNetwork(uri, args){
+  getNetwork(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  updateNetwork(uri, data, args){
+  updateNetwork(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -504,7 +504,7 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  //Not implemented
+  // Not implemented
   removeProject(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
@@ -535,24 +535,24 @@ export default class OneSphere {
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateDeployment(uri, data, args){
+  updateDeployment(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  actionOnDeployment(uri, data, args){
+  actionOnDeployment(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}${uri}/actions${params}`, options);
   }
 
-  getDeploymentConsole(uri, args){
+  getDeploymentConsole(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/console${params}`, { headers: this.headers });
   }
 
-  getDeploymentKubeconfig(uri, args){
+  getDeploymentKubeconfig(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}/kubeconfig${params}`, { headers: this.headers });
   }
@@ -566,37 +566,37 @@ export default class OneSphere {
 
   // accounts
 
-  //Not implemented
-  getAccount(args){
+  // Not implemented
+  getAccount(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/account${params}`, { headers: this.headers });
   }
 
   // appliances
 
-  getAppliances(args){
+  getAppliances(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/appliances${params}`, { headers: this.headers });
   }
 
-  getAppliance(uri, args){
+  getAppliance(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addAppliance(data, args){
+  addAppliance(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/appliances${params}`, options);
   }
 
-  updateAppliance(uri, data, args){
+  updateAppliance(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  removeAppliance(uri, args){
+  removeAppliance(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -604,41 +604,41 @@ export default class OneSphere {
 
   // events
 
-  //Not implemented
-  getEvents(args){
+  // Not implemented
+  getEvents(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/events${params}`, { headers: this.headers });
   }
 
   // keypairs
 
-  getKeyPair(args){
+  getKeyPair(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/keypairs${params}`, { headers: this.headers });
   }
 
   // membership roles
 
-  getMembershipRoles(args){
+  getMembershipRoles(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/membership-roles${params}`, { headers: this.headers });
   }
 
   // memberships
 
-  getMemberships(arg){
+  getMemberships(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/memberships${params}`, { headers: this.headers });
   }
 
-  addMembership(data, args){
+  addMembership(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/memberships${params}`, options);
   }
 
-  //Not implemented
-  removeMembership(uri, args){
+  // Not implemented
+  removeMembership(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -646,13 +646,13 @@ export default class OneSphere {
 
   // password reset
 
-  resetSingleUsePassword(data, args){
+  resetSingleUsePassword(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/password-reset${params}`, options);
   }
 
-  changePassword(data, args){
+  changePassword(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/password-reset${params}`, options);
@@ -660,29 +660,29 @@ export default class OneSphere {
 
   // volumes
 
-  getVolumes(args){
+  getVolumes(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/volumes${params}`, { headers: this.headers });
   }
 
-  getVolume(uri, args){
+  getVolume(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addVolume(data, args){
+  addVolume(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/volumes${params}`, options);
   }
 
-  updateVolume(uri, data, args){
+  updateVolume(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  removeVolume(uri, args){
+  removeVolume(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
@@ -690,59 +690,59 @@ export default class OneSphere {
 
   // billing-accounts
 
-  getBillingAccounts(args){
+  getBillingAccounts(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/billing-accounts${params}`, { headers: this.headers });
   }
 
-  getBillingAccount(uri, args){
+  getBillingAccount(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addBillingAccount(data, args){
+  addBillingAccount(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/billing-accounts${params}`, options);
   }
 
-  removeBillingAccount(uri, args){
+  removeBillingAccount(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateBillingAccount(uri, data, args){
+  updateBillingAccount(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  //servers
+  // servers
 
-  getServers(args){
+  getServers(args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/servers${params}`, { headers: this.headers });
   }
 
-  getServer(uri, args){
+  getServer(uri, args) {
     const params = getUrlParams(args);
     return fetcher(`${this.host}${uri}${params}`, { headers: this.headers });
   }
 
-  addServer(data, args){
+  addServer(data, args) {
     const params = getUrlParams(args);
     const options = this.postOptions(data);
     return fetcher(`${this.host}/rest/servers${params}`, options);
   }
 
-  removeServer(uri, args){
+  removeServer(uri, args) {
     const params = getUrlParams(args);
     const options = { headers: this.headers, method: 'DELETE' };
     return fetcher(`${this.host}${uri}${params}`, options);
   }
 
-  updateServer(uri, data, args){
+  updateServer(uri, data, args) {
     const params = getUrlParams(args);
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
