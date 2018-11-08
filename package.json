@@ -1,6 +1,6 @@
 {
   "name": "@hpe/hpe-onesphere-js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "dist/index.node.js",
   "browser": "dist/index.js",
   "description": "HPE OneSphere Javascript API",
