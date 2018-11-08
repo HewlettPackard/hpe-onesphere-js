@@ -605,7 +605,7 @@ export default class OneSphere {
   // events
 
   //Not implemented
-  getEvents(args, args){
+  getEvents(args){
     const params = getUrlParams(args);
     return fetcher(`${this.host}/rest/events${params}`, { headers: this.headers });
   }
