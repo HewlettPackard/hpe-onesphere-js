@@ -65,7 +65,7 @@ export default class OneSphere {
     return fetcher(`${this.host}/rest/status${params}`, { headers: this.headers });
   }
 
-  //connect-app
+  // connect-app
 
   getConnectApp(args) {
     const params = getUrlParams(args);
@@ -747,5 +747,4 @@ export default class OneSphere {
     const options = this.patchOptions(data);
     return fetcher(`${this.host}${uri}${params}`, options);
   }
-
 }
